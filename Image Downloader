@@ -1,0 +1,12 @@
+import random
+import urllib.request
+
+def image_download(url):
+    name = random.randrange(1, 2000)
+    convert_name = str(name) + ".jpg"
+    urllib.request.urlretrieve(url, convert_name)
+    
+user_input = input("give a image url to download: ")   
+print ("downloading.....") 
+image_download(user_input)
+print ("download complete")

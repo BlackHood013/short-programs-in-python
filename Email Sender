@@ -1,0 +1,26 @@
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+from_user = input ("enter senders gmail id: ")
+fromaddress = from_user
+user_pass = input("enter senders gmail password: ")
+password = user_pass
+to_user = input("enter receivers gmail id: ")
+toaddress = to_user
+
+msg = MIMEMultipart()
+msg['from'] = fromaddress
+msg['To'] = toaddress
+msg_sub = input("type subject of your message:")
+msg['Subject'] = msg_sub
+msg_body = input("type message body:")
+body = msg_body
+msg.attach(MIMEText(body, 'plain'))
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(fromaddress, password)
+server.sendmail(fromaddress,toaddress,msg)
+print ("your email is sucessfuly sent.check it out.")
+server.quit()
